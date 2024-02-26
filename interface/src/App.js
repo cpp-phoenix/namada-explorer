@@ -12,8 +12,9 @@ function App() {
       <Router>
         <Navbar/>
         <Routes>
-          <Route path='/blocks' exact element={<Blocks/>}/>
           <Route path='/' exact element={<Home/>}/>
+          <Route path='/blocks' exact element={<Blocks/>}/>
+          <Route path='/blocks/:page' exact element={<Blocks/>}/>
           <Route path='/search' exact element={<Search/>}/>
           <Route path='/search/:id' exact element={<Search/>}/>
         </Routes>

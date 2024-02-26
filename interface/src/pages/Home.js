@@ -1,5 +1,5 @@
 import { useEffect, useState, useMemo, useRef } from 'react';
-import { NavLink as Link } from 'react-router-dom';
+import { NavLink as Link, useNavigate } from 'react-router-dom';
 
 const useMap = () => {
     const [map, setMap] = useState(new Map());
@@ -31,6 +31,7 @@ function Home () {
     const[latestBlock, setLatestBlock] = useState(0)
     const blockIs = useRef(0);
     const fetchBlock = 10;
+    const navigate = useNavigate();
 
     const getBlockData = async () => {
         if(parseInt(blockIs.current) > 0) {
@@ -108,7 +109,7 @@ function Home () {
         }
         return (
             <div className='flex items-center justify-between px-4 w-full h-[105px]'>
-                <div className='flex space-x-3'>
+                <div className='flex space-x-2'>
                     <div className='text-[#00FFFF]'>
                         <div class="bg-opacity-5 rounded-lg justify-center items-center gap-2.5 flex">
                             <div class="relative">
@@ -119,7 +120,7 @@ function Home () {
                         </div>
                     </div>
                     <div className='flex flex-col justify-between'>
-                        <Link to={`/search/${_blockData["block_height"]}`}><button className='text-lg text-[#FFFF00]'>{_blockData["block_height"]}</button></Link>
+                        <Link to={`/search/${_blockData["block_height"]}`}><button className='text-lg text-[#FFFF00] underline'>{_blockData["block_height"]}</button></Link>
                         <div className='text-sm'>{timeAgo}</div>
                     </div>
                 </div>
@@ -147,7 +148,7 @@ function Home () {
                                     </div>
                                 </div>
                                 <Link to={`/search/${element}`}>
-                                    <button className='text-[#FFFF00]'>
+                                    <button className='text-[#FFFF00] underline'>
                                         {element}
                                     </button>
                                 </Link>
@@ -172,7 +173,7 @@ function Home () {
                         })    
                     }
                 </div>
-                <button className='rounded-b-[15px] flex-none w-full py-4 bg-[#FFFF00] font-semibold text-md text-[#1A1A1A]'>View All Blocks</button>
+                <button onClick={() => {navigate('/blocks/1')}} className='rounded-b-[15px] flex-none w-full py-4 bg-[#FFFF00] font-semibold text-md text-[#1A1A1A]'>View All Blocks</button>
             </div>
         </div>
     )
