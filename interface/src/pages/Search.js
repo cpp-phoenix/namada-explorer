@@ -25,8 +25,8 @@ function Search () {
             })();
         },[])
         return (
-            <div className='flex items-center justify-center h-[800px] space-x-5'>
-                <div className='p-6 text-lg space-y-6 rounded-[15px] bg-[#1A1A1A] w-[1000px] h-[650px]'>
+            <div className='p-2 flex items-center justify-center h-[30rem] sm:h-[35rem] md:h-[38rem] xl:h-[45rem]'>
+                <div className='p-3 md:p-4 lg:p-6 text-[14px] sm:text-md md:text-lg space-y-2 lg:space-y-3 2xl:space-y-4 rounded-[15px] bg-[#1A1A1A] w-full sm:w-4/5 h-content max-h-full overflow-x-auto overflow-y-hidden'>
                     <div class='flex space-x-2'><div>Vote Id:</div> <div className='text-[#FFFF00]'>{voteData['vote_id']}</div></div>
                     <div class='flex space-x-2'><div>Vote:</div> <div className={`${voteData['vote'] === 'yay'? 'text-green-500' : 'text-red-500'}`}>{voteData['vote']}</div></div>
                     <div class='flex space-x-2'><div>Voter:</div> <div className='text-[#FFFF00]'>{voteData['voter']}</div></div>

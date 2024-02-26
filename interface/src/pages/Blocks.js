@@ -121,7 +121,7 @@ function Blocks () {
             timeAgo = parseInt((timeDiff/360000)) + " hours ago"
         }
         return (
-            <div className='flex items-center justify-between px-4 w-full h-[63px]'>
+            <div className='flex items-center justify-between px-1 sm:px-4 w-full'>
                 <div className='flex space-x-2'>
                     <div className='text-[#00FFFF]'>
                         <div class="bg-opacity-5 rounded-lg justify-center items-center gap-2.5 flex">
@@ -133,12 +133,12 @@ function Blocks () {
                         </div>
                     </div>
                     <div className='flex flex-col justify-between'>
-                        <Link to={`/search/${_blockData["block_height"]}`}><button className='text-md text-[#FFFF00] underline'>{_blockData["block_height"]}</button></Link>
-                        <div className='text-xs'>{timeAgo}</div>
+                        <Link to={`/search/${_blockData["block_height"]}`}><button className='text-sm sm:text-md text-[#FFFF00] underline'>{_blockData["block_height"]}</button></Link>
+                        <div className='text-[10px] sm:text-xs'>{timeAgo}</div>
                     </div>
                 </div>
-                <div className='text-sm'>{_blockData["block_hash"].slice(0,30) + "..."}</div>
-                <div className='text-sm'>{_blockData["proposer"]}</div>
+                <div className='text-[14px] sm:text-sm w-[100px] sm:w-[150px] md:w-[180px] lg:w-[200px] xl:w-[250px] truncate'>{_blockData["block_hash"]}</div>
+                <div className='text-[14px] sm:text-sm w-[120px] sm:w-[200px] md:w-[250px] lg:w-[300px] xl:w-[350px] truncate'>{_blockData["proposer"]}</div>
                 <div>{_blockData["txn_size"]}</div>
             </div>
         )
@@ -146,14 +146,14 @@ function Blocks () {
 
     return (
         <div className="flex-1 flex flex-col text-white items-center justify-center">
-            <div className='flex flex-col rounded-[15px] w-[1200px] h-[755px] bg-[#1A1A1A]'>
-                <div className='font-semibold flex text-lg items-center justify-between px-8 w-full h-[70px] border-b'>
+            <div className='py-2 flex flex-col rounded-[15px] w-screen md:min-w-[730px] md:max-w-[930px] lg:min-w-[930px] xl:min-w-[1000px] h-[35rem] sm:h-[45rem] bg-[#1A1A1A]'>
+                <div className='flex-none font-semibold flex text-sm sm:text-md md:text-lg items-center justify-between pl-8 pr-4 w-full h-[70px] border-b'>
                     <div>Block</div>
                     <div>Hash</div>
                     <div>Proposer</div>
                     <div>txns</div>
                 </div>
-                <div className='grow px-2 flex flex-col justify-start'>
+                <div className='grow py-4 px-1 sm:px-2 flex flex-col justify-start max-h-parent space-y-4 overflow-y-auto'>
                     {
                       [...blockData.keys()].sort((a, b) => (b - a)).slice(0,10).map((element) => {
                             return (
@@ -162,7 +162,7 @@ function Blocks () {
                         })    
                     }
                 </div>
-                <div className='rounded-b-[15px] flex-none w-full py-4 bg-[#00FFFF] font-semibold text-md text-[#1A1A1A]'>
+                <div className='rounded-b-[15px] flex-none w-full py-2 sm:py-3 lg:py-4 bg-[#00FFFF] font-semibold text-md text-[#1A1A1A]'>
                     <div className='flex justify-center space-x-4 text-lg font-bold'>
                         <button onClick={() => {navigate('/blocks/' + (parseInt(page) - 1)); setPageId(parseInt(page) + 1)}} className={`${parseInt(page) === 1 ? 'hidden ' : ' '} hover:text-[#FFFF00]`}>{'<'}</button>
                         <div >{page}</div>
