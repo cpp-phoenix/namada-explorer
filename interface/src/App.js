@@ -15,6 +15,7 @@ function App() {
           <Route path='/blocks' exact element={<Blocks/>}/>
           <Route path='/' exact element={<Home/>}/>
           <Route path='/search' exact element={<Search/>}/>
+          <Route path='/search/:id' exact element={<Search/>}/>
         </Routes>
       </Router>
     </div>

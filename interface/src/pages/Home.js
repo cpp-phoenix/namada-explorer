@@ -1,4 +1,5 @@
 import { useEffect, useState, useMemo, useRef } from 'react';
+import { NavLink as Link } from 'react-router-dom';
 
 const useMap = () => {
     const [map, setMap] = useState(new Map());
@@ -118,7 +119,7 @@ function Home () {
                         </div>
                     </div>
                     <div className='flex flex-col justify-between'>
-                        <div className='text-lg text-[#FFFF00]'>{_blockData["block_height"]}</div>
+                        <Link to={`/search/${_blockData["block_height"]}`}><button className='text-lg text-[#FFFF00]'>{_blockData["block_height"]}</button></Link>
                         <div className='text-sm'>{timeAgo}</div>
                     </div>
                 </div>
@@ -131,9 +132,9 @@ function Home () {
 
     return (
         <div className="flex-1 flex flex-col space-y-6 text-white items-center justify-center">
-            <div className='flex space-x-20 justify-center items-center space-x-10 rounded-[25px] w-[1300px] h-[110px] bg-[#1A1A1A]'>
+            <div className='pl-12 flex space-x-20 justify-start items-center space-x-10 rounded-[15px] w-[1300px] h-[110px] bg-[#1A1A1A]'>
                 {
-                    [...blockData.keys()].sort((a, b) => (a - b)).map((element) => {
+                    [...blockData.keys()].sort((a, b) => (b - a)).slice(0,10).map((element) => {
                         return (
                             <div className='space-y-2'>
                                 <div className='text-[#FFFF00]'>
@@ -145,22 +146,24 @@ function Home () {
                                         </div>
                                     </div>
                                 </div>
-                                <button className='text-[#FFFF00]'>
-                                    {element}
-                                </button>
+                                <Link to={`/search/${element}`}>
+                                    <button className='text-[#FFFF00]'>
+                                        {element}
+                                    </button>
+                                </Link>
                             </div>
                         )
                     })    
                 }
             </div>
-            <div className='flex flex-col rounded-[25px] w-[1200px] h-[700px] bg-[#1A1A1A]'>
+            <div className='flex flex-col rounded-[15px] w-[1200px] h-[690px] bg-[#1A1A1A]'>
                 <div className='px-8 font-semibold flex text-lg items-center justify-between px-4 w-full h-[70px] border-b'>
                     <div>Block</div>
                     <div>Hash</div>
                     <div>Proposer</div>
                     <div>txns</div>
                 </div>
-                <div className='grow px-2'>
+                <div className='grow px-2 flex flex-col justify-start'>
                     {
                       [...blockData.keys()].sort((a, b) => (b - a)).slice(0,5).map((element) => {
                             return (
@@ -169,7 +172,7 @@ function Home () {
                         })    
                     }
                 </div>
-                <button className='rounded-b-[20px] flex-none w-full py-4 bg-[#FFFF00] text-black font-semibold text-lg text-[#1A1A1A]'>View All Blocks</button>
+                <button className='rounded-b-[15px] flex-none w-full py-4 bg-[#FFFF00] font-semibold text-md text-[#1A1A1A]'>View All Blocks</button>
             </div>
         </div>
     )
