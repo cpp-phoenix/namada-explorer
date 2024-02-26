@@ -133,7 +133,7 @@ function Home () {
 
     return (
         <div className="flex-1 flex flex-col space-y-4 text-white items-center justify-center">
-            <div className='px-1 sm:px-4 md:px-6 flex justify-between items-center rounded-[10px] w-screen max-w-[1200px] py-3 sm:py-4 md:py-6 bg-[#1A1A1A]'>
+            <div className='px-1 sm:px-4 md:px-6 flex justify-between items-center rounded-[10px] w-screen max-w-[1200px] py-3 min-h-[70px] md:min-h-[100px] sm:py-4 md:py-6 bg-[#1A1A1A]'>
                 {
                     [...blockData.keys()].sort((a, b) => (b - a)).slice(0,10).map((element) => {
                         return (
