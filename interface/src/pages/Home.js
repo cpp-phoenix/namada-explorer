@@ -132,7 +132,7 @@ function Home () {
     }
 
     return (
-        <div className="flex-1 flex flex-col space-y-4 text-white items-center justify-center">
+        <div className="flex-1 flex flex-col space-y-2 sm:space-y-4 text-white items-center justify-center border">
             <div className='px-1 sm:px-4 md:px-6 flex justify-between items-center rounded-[10px] w-screen max-w-[1200px] py-3 min-h-[70px] md:min-h-[100px] sm:py-4 md:py-6 bg-[#1A1A1A]'>
                 {
                     [...blockData.keys()].sort((a, b) => (b - a)).slice(0,10).map((element) => {
@@ -157,8 +157,8 @@ function Home () {
                     })    
                 }
             </div>
-            <div className='flex flex-col rounded-[10px] w-screen max-w-[1200px] bg-[#1A1A1A] h-4/5'>
-                <div className='font-semibold flex text-sm sm:text-md md:text-lg items-center justify-between pl-6 sm:pl-10 px-4 py-4 w-full h-parent border-b'>
+            <div className='flex flex-col rounded-[10px] w-screen max-w-[1200px] bg-[#1A1A1A] min-h-3/5 max-h-4/5 h-content'>
+                <div className='font-semibold flex text-sm sm:text-md md:text-lg items-center justify-between pl-6 sm:pl-10 px-4 py-4 w-full border-b'>
                     <div>Block</div>
                     <div>Hash</div>
                     <div>Proposer</div>
