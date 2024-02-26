@@ -1,5 +1,5 @@
 import { useEffect, useState, useMemo, useRef } from 'react';
-import { NavLink as Link, useParams } from 'react-router-dom';
+import { NavLink as Link, useParams, useNavigate } from 'react-router-dom';
 
 const useMap = () => {
     const [map, setMap] = useState(new Map());
@@ -26,12 +26,14 @@ const useMap = () => {
   };
 
 function Blocks () {
+    const navigate = useNavigate();
+
     let { page } = useParams();
     const [blockData, { set, remove, clear }] = useMap();
     const[latestBlock, setLatestBlock] = useState(0)
+    const [pageId, setPageId] = useState()
     const blockIs = useRef(0);
     const pageSize = 10;
-
     if(page === undefined) {
         page = 1
     }
@@ -72,6 +74,7 @@ function Blocks () {
         }
         if(!isNaN(page)) {
             (async () => {
+                clear()
                 const response = await fetch(process.env.REACT_APP_INDEXER_ENDPOINT + "/block/last");
                 const _blockData = await response.json();
                 const _latestBlock = _blockData["header"]["height"]
@@ -93,7 +96,7 @@ function Blocks () {
                 }
                 
             })();
-            if (page == 1) {
+            if (parseInt(page) === 1) {
                 const interval = setInterval(() => {
                     getBlockData();
                 }, 5000);
@@ -102,7 +105,7 @@ function Blocks () {
             }
         }
 
-    },[])
+    },[pageId])
     
     function BlockPane ({ blockId }) {
         const _blockData = blockData.get(blockId)
@@ -159,7 +162,13 @@ function Blocks () {
                         })    
                     }
                 </div>
-                <button className='rounded-b-[15px] flex-none w-full py-4 bg-[#FFFF00] font-semibold text-md text-[#1A1A1A]'>View All Blocks</button>
+                <div className='rounded-b-[15px] flex-none w-full py-4 bg-[#00FFFF] font-semibold text-md text-[#1A1A1A]'>
+                    <div className='flex justify-center space-x-4 text-lg font-bold'>
+                        <button onClick={() => {navigate('/blocks/' + (parseInt(page) - 1)); setPageId(parseInt(page) + 1)}} className={`${parseInt(page) === 1 ? 'hidden ' : ' '} hover:text-[#FFFF00]`}>{'<'}</button>
+                        <div >{page}</div>
+                        <button onClick={() => {navigate('/blocks/' + (parseInt(page) + 1)); setPageId(parseInt(page) + 1)}} className='hover:text-[#FFFF00]'>{'>'}</button>
+                    </div>
+                </div>
             </div>
         </div>
     )
