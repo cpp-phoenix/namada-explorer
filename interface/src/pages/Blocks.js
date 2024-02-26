@@ -145,7 +145,7 @@ function Blocks () {
     }
 
     return (
-        <div className="flex-1 flex flex-col text-white items-center justify-center">
+        <div className="flex-1 flex flex-col text-white items-center justify-start">
             <div className='py-2 flex flex-col rounded-[15px] w-screen md:min-w-[730px] md:max-w-[930px] lg:min-w-[930px] xl:min-w-[1000px] h-[35rem] sm:h-[45rem] bg-[#1A1A1A]'>
                 <div className='flex-none font-semibold flex text-sm sm:text-md md:text-lg items-center justify-between pl-8 pr-4 w-full h-[70px] border-b'>
                     <div>Block</div>
@@ -153,7 +153,7 @@ function Blocks () {
                     <div>Proposer</div>
                     <div>txns</div>
                 </div>
-                <div className='grow py-4 px-1 sm:px-2 flex flex-col justify-start max-h-parent space-y-4 overflow-y-auto'>
+                <div className='flex-1 py-4 px-1 sm:px-2 flex flex-col justify-start space-y-4 overflow-y-auto'>
                     {
                       [...blockData.keys()].sort((a, b) => (b - a)).slice(0,10).map((element) => {
                             return (
@@ -162,7 +162,7 @@ function Blocks () {
                         })    
                     }
                 </div>
-                <div className='rounded-b-[15px] flex-none w-full py-2 sm:py-3 lg:py-4 bg-[#00FFFF] font-semibold text-md text-[#1A1A1A]'>
+                <div className='rounded-b-[15px] w-full py-2 sm:py-3 lg:py-4 bg-[#00FFFF] font-semibold text-md text-[#1A1A1A]'>
                     <div className='flex justify-center space-x-4 text-lg font-bold'>
                         <button onClick={() => {navigate('/blocks/' + (parseInt(page) - 1)); setPageId(parseInt(page) + 1)}} className={`${parseInt(page) === 1 ? 'hidden ' : ' '} hover:text-[#FFFF00]`}>{'<'}</button>
                         <div >{page}</div>
